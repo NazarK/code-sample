@@ -19,7 +19,7 @@ development:
   database: trello_development
   pool:     5
   username: trello
-  password:
+  password: trello
   template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
