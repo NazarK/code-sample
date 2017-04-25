@@ -45,5 +45,5 @@ group :test do
   gem 'selenium-webdriver'
 end
 gem "font-awesome-rails"
-
+gem "responders", path: "/home/nazar/responders"
 

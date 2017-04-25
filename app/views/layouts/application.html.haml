@@ -8,4 +8,16 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = csrf_meta_tags
   %body
-    = yield
+    #wrapper
+      %nav.navbar-default.navbar-static-side
+        .sidebar-collapse
+          %ul#side-menu.nav.metismenu
+            %li.nav-header
+              .dropdown.profile-element
+                %span.clear
+                  %span.block.mt-xs
+                    %strong.font-bold
+                      Trello Like Cards
+
+      #page-wrapper.gray-bg
+        = yield

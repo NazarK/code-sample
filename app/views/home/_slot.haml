@@ -1,0 +1,9 @@
+- if slot.card.present?
+  %li#.ui-sortable-handle
+- else
+  %li#task1.warning-element.ui-sortable-handle
+    = slot.card.text
+    .agile-detail
+      %a.pull-right.btn.btn-xs.btn-white{:href => "#"} Tag
+      %i.fa.fa-clock-o
+      = I18n.l slot.card.created_at, format: :long

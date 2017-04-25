@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :slot do
-    column nil
+    list nil
     card nil
   end
 end
