@@ -1,4 +1,6 @@
 class ListsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -23,17 +25,21 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     @list.save
-    respond_with(@list, location: (lists_path if @list.errors.blank?) )
+    if !request.xhr?
+      respond_with @list, location: (lists_path if @list.errors.blank?)
+    end
   end
 
   def update
     @list.update(list_params)
-    respond_with(@list, location: (lists_path if @list.errors.blank?))
+    respond_with @list, location: (lists_path if @list.errors.blank?)
   end
 
   def destroy
     @list.destroy
-    respond_with(@list)
+    if !request.xhr?
+      respond_with(@list)
+    end
   end
 
   private
@@ -42,6 +48,6 @@ class ListsController < ApplicationController
     end
 
     def list_params
-      params.require(:list).permit(:name)
+      params.require(:list).permit(:id, :name)
     end
 end

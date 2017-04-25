@@ -3,6 +3,7 @@
 %table
   %thead
     %tr
+      %th Id
       %th Name
       %th
       %th
@@ -11,6 +12,7 @@
   %tbody
     - @lists.each do |list|
       %tr
+        %td= list.id
         %td= list.name
         %td= link_to 'Show', list
         %td= link_to 'Edit', edit_list_path(list)

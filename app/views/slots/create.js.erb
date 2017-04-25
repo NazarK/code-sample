@@ -1,0 +1,4 @@
+<% if @slot.errors.present? %>
+  alert("<%= @slot.errors.full_messages.join("\n").html_safe %>")
+<% end %>
+<%= render "lists/lists_refresh.js.erb" %>

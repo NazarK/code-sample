@@ -1,0 +1,2 @@
+console.log("rendering: <%= List.count%> lists")
+$("#lists").html('<%= escape_javascript(render partial: "home/lists.haml") %>')

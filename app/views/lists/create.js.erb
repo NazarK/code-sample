@@ -1,0 +1,7 @@
+<% if !@list.errors.present? %>
+  $("[name='list[name]']").val("")
+<% else %>
+  alert("<%= @list.errors.full_messages.join("\n").html_safe %>")
+<% end %>
+
+<%= render "lists/lists_refresh.js.erb" %>

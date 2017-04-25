@@ -15,3 +15,24 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+
+
+$(function() {
+
+  $(document).on("click",".empty_slot",function() {
+    var card_name = prompt("Card name")
+    if(card_name) {
+      $.ajax( "/cards", {
+        method: "post",
+        data: {card: { name: card_name, slot_id: $(this).data("slot-id")}},
+        dataType: "script",
+      })
+
+    }
+
+  })
+
+
+
+})

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: cards
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  text       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do

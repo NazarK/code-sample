@@ -1,9 +1,15 @@
-- if slot.card.present?
-  %li#.ui-sortable-handle
+- if !slot.card.present?
+  %li.empty_slot{data: { slot_id: slot.id}}
+    .pull-right
+      %a{href: slot_path(slot), data: { method: :delete, remote: true, confirm: "Delete slot?"}}
+        %i.fa.fa-close
+    click to fill
 - else
-  %li#task1.warning-element.ui-sortable-handle
-    = slot.card.text
+  %li.card
+    .pull-right
+      %a{href: slot_path(slot), data: { method: :delete, remote: true, confirm: "Delete slot with card?"}}
+        %i.fa.fa-close
+    = slot.card.name
     .agile-detail
-      %a.pull-right.btn.btn-xs.btn-white{:href => "#"} Tag
       %i.fa.fa-clock-o
       = I18n.l slot.card.created_at, format: :long

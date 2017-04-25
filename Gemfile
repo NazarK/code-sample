@@ -45,5 +45,6 @@ group :test do
   gem 'selenium-webdriver'
 end
 gem "font-awesome-rails"
-gem "responders", path: "/home/nazar/responders"
-
+gem "responders", github: "NazarK/responders"
+gem "annotate", require: false
+gem "binding_of_caller"

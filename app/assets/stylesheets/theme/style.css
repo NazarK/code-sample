@@ -161,12 +161,13 @@ h5 {
 }
 .nav-header {
   padding: 33px 25px;
-  background: url("patterns/header-profile.png") no-repeat;
+//  background: url("patterns/header-profile.png") no-repeat;
 }
 .pace-done .nav-header {
   transition: all 0.5s;
 }
 .nav > li.active {
+  border-left: 4px solid #19aa8d;
   border-left: 4px solid #19aa8d;
   background: #293846;
 }
