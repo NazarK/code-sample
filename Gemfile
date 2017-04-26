@@ -48,3 +48,4 @@ gem "font-awesome-rails"
 gem "responders", github: "NazarK/responders"
 gem "annotate", require: false
 gem "binding_of_caller"
+gem 'jquery-ui-rails'

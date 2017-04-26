@@ -1,15 +1,16 @@
-- if !slot.card.present?
-  %li.empty_slot{data: { slot_id: slot.id}}
-    .pull-right
-      %a{href: slot_path(slot), data: { method: :delete, remote: true, confirm: "Delete slot?"}}
-        %i.fa.fa-close
-    click to fill
-- else
-  %li.card
-    .pull-right
-      %a{href: slot_path(slot), data: { method: :delete, remote: true, confirm: "Delete slot with card?"}}
-        %i.fa.fa-close
-    = slot.card.name
-    .agile-detail
-      %i.fa.fa-clock-o
-      = I18n.l slot.card.created_at, format: :long
+%li.slot{data: { slot_id: slot.id}}
+  - if !slot.card.present?
+    .empty_slot_content
+      .pull-right
+        %a{href: slot_path(slot), data: { method: :delete, remote: true, confirm: "Delete slot?"}}
+          %i.fa.fa-close
+      click to fill
+  - else
+    .card{data: {card_id: slot.card.id} }
+      .pull-right
+        %a{href: slot_path(slot), data: { method: :delete, remote: true, confirm: "Delete slot with card?"}}
+          %i.fa.fa-close
+      = slot.card.name
+      .agile-detail
+        %i.fa.fa-clock-o
+        = I18n.l slot.card.created_at, format: :long

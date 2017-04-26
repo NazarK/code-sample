@@ -9,7 +9,7 @@
     %h3= list.name
     %p.small
       %i.fa.fa-hand-o-up
-      Drag task between list
+      Drag cards between lists
     = simple_form_for "card", url: cards_path, remote: true do |f|
       .input-group
         %input{type: :hidden, name: "card[list_id]", value: list.id}

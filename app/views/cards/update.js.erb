@@ -1,0 +1,3 @@
+<% if @card.errors.present? %>
+  alert("<%= @card.errors.full_messages.join("\n").html_safe %>")
+<% end %>

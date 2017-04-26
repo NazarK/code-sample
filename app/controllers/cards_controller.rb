@@ -54,7 +54,9 @@ class CardsController < ApplicationController
 
   def update
     @card.update(card_params)
-    respond_with @card, location: (cards_path if @card.errors.blank?)
+    if !request.xhr?
+      respond_with @card, location: (cards_path if @card.errors.blank?)
+    end
   end
 
   def destroy

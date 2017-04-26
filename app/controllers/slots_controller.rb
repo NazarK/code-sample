@@ -31,7 +31,9 @@ class SlotsController < ApplicationController
 
   def update
     @slot.update(slot_params)
-    respond_with @slot, location: (slots_path if @slot.errors.blank?)
+    if !request.xhr?
+      respond_with @slot, location: (slots_path if @slot.errors.blank?)
+    end
   end
 
   def destroy

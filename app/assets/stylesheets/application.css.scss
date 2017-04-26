@@ -15,7 +15,25 @@
  *= require theme/plugins/toastr/toastr.min
  *= require theme/animate
  *= require theme/style
+ *= require jquery-ui
  */
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+
+
+.slot.card-hover {
+  background: white;
+  .card {
+    background: white!important;
+  }
+}
+
+.card {
+  z-index: 10;
+  &.ui-draggable-dragging {
+    z-index: 11;
+    background: #fafafb;
+  }
+}
