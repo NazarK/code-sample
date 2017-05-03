@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :card_types
 
   #only api calls
-  resources :slots
+  resources :slots do
+    post :switch, on: :collection
+  end
   resources :lists
   resources :cards
 

@@ -4,6 +4,26 @@ class SlotsController < ApplicationController
 
   respond_to :html
 
+  def switch
+    @slot = Slot.find(params[:slot_id])
+    @slot_other = Slot.find(params[:slot_other])
+    slot_card_id = @slot.card_id
+    slot_other_card_id = @slot_other.card_id
+
+    Slot.transaction do
+      @slot.update_attributes card_id: nil
+      @slot_other.update_attributes card_id: nil
+
+      @slot.update_attributes card_id: slot_other_card_id
+      @slot_other.update_attributes card_id: slot_card_id
+
+      if @slot.errors.present? || @slot_other.errors.present?
+        raise ActiveRecord::Rollback
+      end
+    end
+
+  end
+
   def index
     @slots = Slot.all
     respond_with(@slots)

@@ -8,6 +8,6 @@
         .modal-body
           .input-group
             %input{type: :hidden, name: "slot[list_id]"}
-            = f.input :card_type_id, as: :select, collection: CardType.all.collect { |r| [r.name, r.id]}, include_blank: "-", required: false
+            = f.input :card_type_id, as: :select, collection: CardType.all.collect { |r| [r.name, r.id]}, include_blank: "-", required: false, label: "Type"
         .modal-footer
           %button.btn.btn-white{type: "submit"} Add Slot

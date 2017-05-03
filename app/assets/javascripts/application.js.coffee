@@ -47,6 +47,18 @@ window.slot_update = (slot)->
       console.log(e)
       console.log('card slot changed')
 
+window.slots_switch = (slot, slot_other) ->
+  $.ajax '/slots/switch',
+    method: 'post'
+    data:
+      slot_id: slot.data("slot-id")
+      slot_other: slot_other.data("slot-id")
+    dataType: 'script'
+    complete: (e)->
+      console.log(e)
+      console.log('slots exchanged')
+
+
 window.make_cards_draggable = ->
   $(".card").draggable revert: "invalid"
 
@@ -62,8 +74,7 @@ window.make_cards_draggable = ->
       #save new slots content
       #TODO: should be in one ajax call, and one trasaction server side, current version is only for prototype
       #TODO: if no feedback from server revert position
-      slot_update(card_slot)
-      slot_update($(this))
+      slots_switch(card_slot, $(this))
 
     accept: ".card"
     hoverClass: "card-hover"
