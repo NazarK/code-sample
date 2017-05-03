@@ -1,5 +1,10 @@
-<% if @card.errors.present? %>
-  alert("<%= @card.errors.full_messages.join("\n").html_safe %>")
+<% if @card.errors.present? || @slot&.errors&.present? %>
+  <% if @card.errors.present? %>
+    alert("<%= @card.errors.full_messages.join("\n").html_safe %>")
+  <% end %>
+  <% if @slot&.errors&.present? %>
+    alert("<%= @slot.errors.full_messages.join("\n").html_safe %>")
+  <% end %>
 <% else %>
   $("#card_form").modal("hide")
   <%= render "lists/lists_refresh.js.erb" %>

@@ -18,7 +18,7 @@ class Slot < ApplicationRecord
 
 
   validate do
-    if self.card_type_id.present? && self.card&.card_type_id != self.card_type_id
+    if self.card_type_id.present? && self.card.present? && self.card.card_type_id != self.card_type_id
       self.errors[:card_type] << "card type doesn't match slot type (#{self.card_type.name})"
     end
   end
