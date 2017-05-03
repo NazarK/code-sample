@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @card_type.name
+
+= link_to 'Edit', edit_card_type_path(@card_type)
+\|
+= link_to 'Back', card_types_path

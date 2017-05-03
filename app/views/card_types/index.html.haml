@@ -1,0 +1,19 @@
+%h1 Listing Card Types
+
+%table.table.table-hover{style:"max-width:400px"}
+  %thead
+    %tr
+      %th Name
+      %th
+
+  %tbody
+    - @card_types.each do |card_type|
+      %tr
+        %td= card_type.name
+        %td
+          = link_to 'Edit', edit_card_type_path(card_type), class: "btn btn-default"
+          = link_to 'Destroy', card_type, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default"
+
+%br
+
+= link_to 'New Card type', new_card_type_path, class: "btn btn-default"

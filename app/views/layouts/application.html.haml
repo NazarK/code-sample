@@ -18,6 +18,10 @@
                   %span.block.mt-xs
                     %strong.font-bold
                       Trello Like Cards
+            %li= link_to "Cards", root_path
+            %li= link_to "Card Types", card_types_path
 
       #page-wrapper.gray-bg
-        = yield
+        .row
+          .col-sm-12
+            = yield
