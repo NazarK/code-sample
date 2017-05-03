@@ -18,6 +18,18 @@
 #= require_tree .
 
 
+window.card_new = (list_id)->
+  $("#card_form [name='card[list_id]']").val(list_id)
+  $("#card_form [name='card[name]']").val("")
+  $("#slot_form [name='card[card_type]']").val("")
+  $("#card_form").modal("show")
+
+window.slot_new = (list_id)->
+  $("#slot_form [name='slot[card_type]']").val("")
+  $("#slot_form [name='slot[list_id]']").val(list_id)
+  $("#slot_form").modal("show")
+
+
 window.slot_update = (slot)->
   card_id = null
   card = slot.find(".card").first()
@@ -58,6 +70,7 @@ window.make_cards_draggable = ->
 
 $ ->
   make_cards_draggable()
+
   $(document).on 'click', '.empty_slot_content', ->
     card_name = prompt('Card name')
     if card_name

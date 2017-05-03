@@ -1,5 +1,6 @@
 <% if @card.errors.present? %>
   alert("<%= @card.errors.full_messages.join("\n").html_safe %>")
 <% else %>
+  $("#card_form").modal("hide")
   <%= render "lists/lists_refresh.js.erb" %>
 <% end %>

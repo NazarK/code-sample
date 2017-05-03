@@ -1,23 +1,19 @@
 .ibox
   .ibox-content
     .pull-right
-      %a.btn-default.btn.btn-sm.btn-white{href: slots_path(slot: { list_id: list.id} ), data: { method: :post, remote: true } }
+      %a.btn-default.btn.btn-sm.btn-white{onClick:"slot_new(#{list.id})"}
         %i.fa.fa-plus
         Add slot
+      %button.btn.btn-sm.btn-white{onClick:"card_new(#{list.id})"}
+        %i.fa.fa-plus
+        Add card
+
       %a{href: list_path(list), data: { method: :delete, remote: true, confirm: "Delete list?"}}
         %i.fa.fa-close
     %h3= list.name
     %p.small
       %i.fa.fa-hand-o-up
       Drag cards between lists
-    = simple_form_for "card", url: cards_path, remote: true do |f|
-      .input-group
-        %input{type: :hidden, name: "card[list_id]", value: list.id}
-        %input.input.input-sm.form-control{:placeholder => "New card name. ", :type => "text", name: "card[name]"}
-        %span.input-group-btn
-          %button.btn.btn-sm.btn-white{:type => "submit"}
-            %i.fa.fa-plus
-            Add card
     %ul#todo.sortable-list.connectList.agile-list.ui-sortable
       - list.slots.order(:id).each do |slot|
         = render "home/slot.haml", slot: slot

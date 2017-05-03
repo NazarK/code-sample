@@ -2,11 +2,12 @@
 #
 # Table name: cards
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  text       :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  name         :string
+#  text         :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  card_type_id :integer
 #
 
 FactoryGirl.define do

@@ -2,11 +2,12 @@
 #
 # Table name: slots
 #
-#  id         :integer          not null, primary key
-#  list_id    :integer
-#  card_id    :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  list_id      :integer
+#  card_id      :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  card_type_id :integer
 #
 
 require 'rails_helper'
