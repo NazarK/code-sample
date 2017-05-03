@@ -1,0 +1,14 @@
+#card_form.modal{:role => "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Card
+      = simple_form_for "card", url: cards_path, remote: true do |f|
+        .modal-body
+          .input-group
+            %input{type: :hidden, name: "card[list_id]"}
+            = f.input :name
+            = f.input :card_type_id, as: :select, collection: CardType.all.collect { |r| [r.name, r.id]}, include_blank: "-", required: false
+        .modal-footer
+          %button.btn.btn-white{type: "submit"} Add Card

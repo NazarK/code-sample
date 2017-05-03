@@ -1,4 +1,4 @@
-%li.slot{data: { slot_id: slot.id}}
+%li.slot{data: { slot_id: slot.id, card_type: slot.card_type&.name || "" }}
   - if !slot.card.present?
     .empty_slot_content
       .pull-right
@@ -6,7 +6,7 @@
           %i.fa.fa-close
       click to fill
   - else
-    .card{data: {card_id: slot.card.id} }
+    .card{data: {card_id: slot.card.id, card_type: slot.card_type&.name || "" } }
       .pull-right
         %a{href: slot_path(slot), data: { method: :delete, remote: true, confirm: "Delete slot with card?"}}
           %i.fa.fa-close
