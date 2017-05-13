@@ -16,4 +16,8 @@ class Card < ApplicationRecord
 
   attr_accessor :list_id
 
+
+  def color
+    "#ff0000"
+  end
 end
