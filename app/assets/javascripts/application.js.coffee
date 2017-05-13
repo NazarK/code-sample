@@ -93,13 +93,11 @@ $ ->
         dataType: 'script'
 
   setInterval (->
-    console.log("checking updates")
     $.ajax '/check_for_updates',
       method: 'get'
       data: timestamp: $("#lists_content").attr("data-timestamp")
       dataType: 'script'
       complete: (e)->
-        console.log(e)
-        console.log('updated')
+        console.log('checked for updates')
 
     ), 2000
