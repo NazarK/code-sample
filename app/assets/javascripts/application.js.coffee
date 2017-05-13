@@ -91,3 +91,15 @@ $ ->
           name: card_name
           slot_id: $(this).parents(".slot").data('slot-id')
         dataType: 'script'
+
+  setInterval (->
+    console.log("checking updates")
+    $.ajax '/check_for_updates',
+      method: 'get'
+      data: timestamp: $("#lists_content").attr("data-timestamp")
+      dataType: 'script'
+      complete: (e)->
+        console.log(e)
+        console.log('updated')
+
+    ), 2000

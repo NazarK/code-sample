@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
+  get "/check_for_updates" => "home#check_for_updates"
   devise_for :users
 
   resources :card_types
