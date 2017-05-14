@@ -10,15 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503122209) do
+ActiveRecord::Schema.define(version: 20170514164805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "card_types", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "workflow_id"
+    t.index ["workflow_id"], name: "index_card_types_on_workflow_id", using: :btree
   end
 
   create_table "cards", force: :cascade do |t|
@@ -34,6 +36,16 @@ ActiveRecord::Schema.define(version: 20170503122209) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "milestones", force: :cascade do |t|
+    t.string   "label"
+    t.string   "color"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "done",        default: false
+    t.integer  "workflow_id"
+    t.index ["workflow_id"], name: "index_milestones_on_workflow_id", using: :btree
   end
 
   create_table "slots", force: :cascade do |t|
@@ -66,7 +78,15 @@ ActiveRecord::Schema.define(version: 20170503122209) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "workflows", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "card_types", "workflows"
   add_foreign_key "cards", "card_types"
+  add_foreign_key "milestones", "workflows"
   add_foreign_key "slots", "card_types"
   add_foreign_key "slots", "cards"
   add_foreign_key "slots", "lists"

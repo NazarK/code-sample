@@ -1,0 +1,20 @@
+%h1 Listing workflows
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Name
+      %th
+
+  %tbody
+    - @workflows.each do |workflow|
+      %tr
+        %td= workflow.name
+        %td
+          = link_to "Milestones (#{workflow.milestones.count})" , workflow_milestones_path(workflow), class: "btn btn-white btn-sm"
+          = link_to 'Edit', edit_workflow_path(workflow), class: "btn btn-white btn-sm"
+          = link_to "<i class='fa fa-close'></i>".html_safe, workflow, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-white btn-sm"
+
+%br
+
+= link_to 'New Workflow', new_workflow_path, class: "btn btn-white btn-sm"

@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   end
   resources :lists
   resources :cards
+  resources :workflows do
+    resources :milestones
+  end
 
 
 end

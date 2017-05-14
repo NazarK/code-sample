@@ -1,0 +1,10 @@
+= simple_form_for([@workflow, @milestone]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :label
+    = f.input :color
+    = f.input :done
+
+  .form-actions
+    = f.button :submit

@@ -42,6 +42,6 @@ class CardTypesController < ApplicationController
     end
 
     def card_type_params
-      params.require(:card_type).permit(:name)
+      params.require(:card_type).permit(:name, :workflow_id)
     end
 end

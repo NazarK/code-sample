@@ -1,9 +1,8 @@
-= simple_form_for(@card_type) do |f|
+= simple_form_for(@workflow) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :name
-    = f.input :workflow_id, collection: Workflow.all
 
   .form-actions
     = f.button :submit

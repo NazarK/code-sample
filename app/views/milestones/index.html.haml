@@ -1,0 +1,28 @@
+%h1 Listing milestones
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Label
+      %th Color
+      %th Done
+      %th
+
+  %tbody
+    - @milestones.each do |milestone|
+      %tr
+        %td= milestone.label
+        %td{style:"color: #{milestone.color}"}
+          = milestone.color
+        %td
+          - if milestone.done
+            %i.fa.fa-check-circle-o
+          - else
+            %i.fa.fa-circle-o
+        %td
+          = link_to 'Edit', edit_workflow_milestone_path(@workflow,milestone), class: "btn btn-sm btn-white"
+          = link_to "<i class='fa fa-close'></i>".html_safe, workflow_milestones_path(@workflow), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-white"
+
+%br
+
+= link_to 'New Milestone', new_workflow_milestone_path, class: "btn btn-sm btn-white"
