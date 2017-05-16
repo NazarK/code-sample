@@ -10,7 +10,7 @@
 
 class CardType < ApplicationRecord
   strip_attributes
-  belongs_to :workflow
+  belongs_to :workflow, optional: true
   validates_uniqueness_of :name, case_sensitive: false
   validates_presence_of :name
 end
