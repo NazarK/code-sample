@@ -41,9 +41,17 @@ class CardsController < ApplicationController
       if params[:card][:list_id].present?
         list_id = params[:card][:list_id]
         list = List.find(list_id)
-        @slot = list.slots.order(:id).where(card:nil).first
+        @slot = list.slots.order(:id).where(card:nil)
+
+        if @card.card_type.present?
+          @slot.where!("card_type_id=? or card_type_id is null",@card.card_type_id)
+        else
+          @slot.where!(card_type:nil)
+        end
+
+        @slot = @slot.first
         if !@slot.present?
-          @card.errors[:list]<<"no empty slots left"
+          @card.errors[:list]<<"no slots to accept the card left"
         else
           ActiveRecord::Base.transaction do
             if @card.save
