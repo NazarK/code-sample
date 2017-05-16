@@ -97,9 +97,13 @@ $ ->
     ($(".card_view[data-card-id=#{card_id}]")).modal("show")
 
   setInterval (->
+    timestamp = $("#lists_content").attr("data-timestamp")
+    if !timestamp
+      return
     $.ajax '/check_for_updates',
       method: 'get'
-      data: timestamp: $("#lists_content").attr("data-timestamp")
+      data:
+        timestamp: timestamp
       dataType: 'script'
       complete: (e)->
         console.log('checked for updates')
