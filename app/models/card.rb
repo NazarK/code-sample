@@ -18,6 +18,6 @@ class Card < ApplicationRecord
 
 
   def color
-    "#ff0000"
+    card_type&.workflow&.milestones&.order(:id)&.where(done:false)&.first&.color || "transparent"
   end
 end

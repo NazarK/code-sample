@@ -21,3 +21,6 @@
       .agile-detail
         %i.fa.fa-clock-o
         = I18n.l slot.card.created_at, format: :long
+
+- if slot&.card
+  = render "card_view", card: slot&.card

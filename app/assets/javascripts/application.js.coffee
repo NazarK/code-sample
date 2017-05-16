@@ -92,6 +92,10 @@ $ ->
           slot_id: $(this).parents(".slot").data('slot-id')
         dataType: 'script'
 
+  $(document).on 'click', '.card', ->
+    card_id = $(this).data("card-id")
+    ($(".card_view[data-card-id=#{card_id}]")).modal("show")
+
   setInterval (->
     $.ajax '/check_for_updates',
       method: 'get'

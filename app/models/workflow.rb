@@ -1,3 +1,3 @@
 class Workflow < ApplicationRecord
-  has_many :milestones
+  has_many :milestones, dependent: :destroy
 end

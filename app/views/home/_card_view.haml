@@ -1,0 +1,28 @@
+.card_view.modal{:role => "dialog", tabindex: "-1",data: { card_id: card.id }}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Card
+      .modal-body
+        %p
+          %strong Name:
+          = card.name
+        %p
+          %strong Type:
+          = card&.card_type&.name
+        - if card&.card_type&.workflow
+          %p
+            %p
+              %strong Workflow:
+              = card.card_type.workflow.name
+            - card&.card_type&.workflow&.milestones.order(:id)&.each do |milestone|
+              %p
+                - if milestone.done
+                  %i.fa.fa-check-circle-o
+                - else
+                  %i.fa.fa-circle-o
+                %span{style:"color: #{milestone.color}"}
+                  = milestone.label
+      .modal-footer
+        %button.btn.btn-white{type: "button", "data-dismiss" => "modal"} Close
