@@ -14,4 +14,11 @@ class List < ApplicationRecord
 
   validates_presence_of :name
   validates_uniqueness_of :name
+
+  after_save do
+    if self.position.blank?
+      self.update_attributes position: self.id
+    end
+  end
+
 end

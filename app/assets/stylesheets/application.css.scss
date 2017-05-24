@@ -35,6 +35,20 @@
   &.ui-draggable-dragging {
     z-index: 11;
     background: #fafafb;
+    opacity: 0.9;
+  }
+}
+
+.list {
+  cursor: pointer;
+  &.ui-draggable-dragging {
+    z-index: 11;
+    background: #fafafb;
+    opacity: 0.9;
+  }
+
+  &.list-hover {
+    opacity: 0.5;
   }
 }
 
@@ -55,5 +69,7 @@
 table.lists td {
   vertical-align:top;
   padding-left:20px;
-  min-width:300px;
+  min-width:250px;
 }
+
+.ui-draggable-dragging{z-index:9999;}

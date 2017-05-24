@@ -58,9 +58,25 @@ window.slots_switch = (slot, slot_other) ->
       console.log(e)
       console.log('slots exchanged')
 
+window.lists_switch = (list_id, list_other) ->
+  $.ajax '/lists/switch',
+    method: 'post'
+    data:
+      list_id: list_id
+      list_other: list_other
+    dataType: 'script'
+    complete: (e)->
+      console.log(e)
+      console.log('lists exchanged')
+
+
 
 window.make_cards_draggable = ->
-  $(".card").draggable revert: "invalid"
+  $(".card").draggable
+    revert: "invalid"
+    stack: ".card"
+    zIndex: 100
+    cursor: "pointer"
 
   $('.slot').droppable
     drop: (event, ui) ->
@@ -72,12 +88,24 @@ window.make_cards_draggable = ->
       content.detach().appendTo(card_slot)
       $(ui.draggable).detach().appendTo(this).css({left:0,top:0,height: ""})
       #save new slots content
-      #TODO: should be in one ajax call, and one trasaction server side, current version is only for prototype
       #TODO: if no feedback from server revert position
       slots_switch(card_slot, $(this))
 
     accept: ".card"
     hoverClass: "card-hover"
+
+  $('.list').draggable
+    revert: "invalid"
+    cursor: "pointer"
+
+  $('.list').droppable
+    drop: (event,ui) ->
+      console.log(ui.draggable)
+      list_id = $(this).data("list-id")
+      list_other =  $(ui.draggable).data("list-id")
+      lists_switch(list_id, list_other)
+    accept: ".list"
+    hoverClass: "list-hover"
 
 $ ->
   make_cards_draggable()
@@ -94,7 +122,8 @@ $ ->
 
   $(document).on 'click', '.card', ->
     card_id = $(this).data("card-id")
-    ($(".card_view[data-card-id=#{card_id}]")).modal("show")
+    $("#card_view_handle").html(($(".card_view[data-card-id=#{card_id}]")).html())
+    $("#card_view_handle").modal("show")
 
   setInterval (->
     timestamp = $("#lists_content").attr("data-timestamp")

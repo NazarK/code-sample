@@ -5,6 +5,16 @@ class ListsController < ApplicationController
 
   respond_to :html
 
+  def switch
+    list = List.find(params[:list_id])
+    list_other = List.find(params[:list_other])
+    List.transaction do
+      save = list.position
+      list.update_attributes position: list_other.position
+      list_other.update_attributes position: save
+    end
+  end
+
   def index
     @lists = List.all
     respond_with(@lists)

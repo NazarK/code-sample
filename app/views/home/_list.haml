@@ -1,8 +1,8 @@
-.ibox{style:"min-width:300px;max-height:100%;"}
+.ibox.list{style:"min-width:300px;max-height:100%;", data: { list_id: list.id }}
   .ibox-content
     %a.pull-right{href: list_path(list), data: { method: :delete, remote: true, confirm: "Delete list?"}}
       %i.fa.fa-close
-    %h3= list.name
+    %h3.handle= list.name
     %p.small
       %i.fa.fa-hand-o-up
       Drag cards between lists

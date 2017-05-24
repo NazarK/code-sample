@@ -1,7 +1,7 @@
 #lists_content{data:{timestamp: ApplicationHelper::last_update_timestamp}}
   %table.lists
     %tr
-      - List.all.each do |list|
+      - List.order(:position).all.each do |list|
         %td
           = render "home/list.haml", list: list
       %td
