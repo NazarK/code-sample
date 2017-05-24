@@ -1,15 +1,7 @@
-.ibox
+.ibox{style:"min-width:300px;max-height:100%;"}
   .ibox-content
-    .pull-right
-      %button.btn.btn-sm.btn-white{onClick:"slot_new(#{list.id})"}
-        %i.fa.fa-plus
-        Add slot
-      %button.btn.btn-sm.btn-white{onClick:"card_new(#{list.id})"}
-        %i.fa.fa-plus
-        Add card
-
-      %a{href: list_path(list), data: { method: :delete, remote: true, confirm: "Delete list?"}}
-        %i.fa.fa-close
+    %a.pull-right{href: list_path(list), data: { method: :delete, remote: true, confirm: "Delete list?"}}
+      %i.fa.fa-close
     %h3= list.name
     %p.small
       %i.fa.fa-hand-o-up
@@ -17,3 +9,13 @@
     %ul#todo.sortable-list.connectList.agile-list.ui-sortable
       - list.slots.order(:id).each do |slot|
         = render "home/slot.haml", slot: slot
+
+    %div
+      .pull-right
+        %button.btn.btn-sm.btn-white{onClick:"slot_new(#{list.id})"}
+          %i.fa.fa-plus
+          Add slot
+        %button.btn.btn-sm.btn-white{onClick:"card_new(#{list.id})"}
+          %i.fa.fa-plus
+          Add card
+    %div{style:"clear:both"}

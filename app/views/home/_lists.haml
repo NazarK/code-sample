@@ -1,4 +1,14 @@
 #lists_content{data:{timestamp: ApplicationHelper::last_update_timestamp}}
-  - List.all.each do |list|
-    .col-lg-4
-      = render "home/list.haml", list: list
+  %table.lists
+    %tr
+      - List.all.each do |list|
+        %td
+          = render "home/list.haml", list: list
+      %td
+        = simple_form_for "list", url: lists_path, remote: true do |f|
+          .input-group
+            %input.input.input-sm.form-control{:placeholder => "New list name. ", :type => "text", name: "list[name]"}
+            %span.input-group-btn
+              %button.btn.btn-sm.btn-white{:type => "submit"}
+                %i.fa.fa-plus
+                `Add list`

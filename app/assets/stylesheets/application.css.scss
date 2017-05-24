@@ -50,3 +50,10 @@
    -ms-user-select: none;
    user-select: none;
 }
+
+
+table.lists td {
+  vertical-align:top;
+  padding-left:20px;
+  min-width:300px;
+}

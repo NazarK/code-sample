@@ -8,7 +8,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = csrf_meta_tags
   %body
-    #wrapper
+    #wrapper{style:"width:100%;height:100%;"}
       %nav.navbar-default.navbar-static-side
         .sidebar-collapse
           %ul#side-menu.nav.metismenu
@@ -22,7 +22,5 @@
             %li= link_to "Card Types", card_types_path
             %li= link_to "Workflows", workflows_path
 
-      #page-wrapper.gray-bg
-        .row
-          .col-sm-12
-            = yield
+      #page-wrapper.gray-bg{style:"position:relative;height:100%;min-height:100%;overflow-y:auto;"}
+        = yield
