@@ -42,7 +42,9 @@ class ListsController < ApplicationController
 
   def update
     @list.update(list_params)
-    respond_with @list, location: (lists_path if @list.errors.blank?)
+    if !request.xhr?
+      respond_with @list, location: (lists_path if @list.errors.blank?)
+    end
   end
 
   def destroy

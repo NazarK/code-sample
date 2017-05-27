@@ -1,0 +1,11 @@
+<% if @list.errors.present? %>
+  console.log("<%= @list.errors.full_messages.join("\n").html_safe %>")
+<% else %>
+  console.log("no errors, saved")
+  $(".list[data-list-id=<%=@list.id%>] .list_name_edit").hide()
+  $(".list[data-list-id=<%=@list.id%>] .list_name").show().html("<%= @list.name %>")
+  $("#lists_content").attr("data-timestamp", <%= ApplicationHelper::last_update_timestamp %>)
+<% end %>
+window.LIST_NAME_SAVING = false
+
+

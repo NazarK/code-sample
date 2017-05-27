@@ -18,6 +18,42 @@
 #= require_tree .
 
 
+window.list_name_edit = () ->
+  input_control = $(this).parents(".list").find(".list_name_edit")
+  input_control.show().focus().val($(this).html())
+  input_control[0].setSelectionRange(0, input_control.val().length)
+  $(this).hide()
+
+window.list_name_edit_key = (e) ->
+  if(e.keyCode==13)
+    console.log("enter handler")
+    list_name_save.apply(this)
+
+window.list_name_save = (e) ->
+  console.log(e)
+  console.log("LIST_NAME_SAVING", window.LIST_NAME_SAVING)
+  if(window.LIST_NAME_SAVING)
+    return;
+  if(!$(this).is(":visible"))
+    console.log("input not visible, ignoring")
+    return;
+  if($(this).val()==window.LIST_NAME_EDIT_IGNORE)
+    console.log("same value, assuming after alert")
+    return;
+  window.LIST_NAME_SAVING = true
+  self = this
+  list_id = $(this).parents(".list").data("list-id")
+  console.log("ajax")
+  $.ajax '/lists/'+list_id,
+    method: 'patch'
+    data: list:
+      name: $(self).val()
+    dataType: 'script'
+    complete: (e)->
+      console.log("complete")
+
+
+
 window.card_new = (list_id)->
   $("#card_form [name='card[list_id]']").val(list_id)
   $("#card_form [name='card[name]']").val("")
@@ -138,3 +174,5 @@ $ ->
         console.log('checked for updates')
 
     ), 2000
+
+

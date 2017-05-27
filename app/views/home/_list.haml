@@ -2,7 +2,8 @@
   .ibox-content
     %a.pull-right{href: list_path(list), data: { method: :delete, remote: true, confirm: "Delete list?"}}
       %i.fa.fa-close
-    %h3.handle= list.name
+    %input.list_name_edit{style:"border:none;font-size:16px;font-weight:600;display:none;background:#eee;margin:2px 0 6px",onblur: "list_name_save.apply(this,[event])", onkeydown: "list_name_edit_key.apply(this,[event])"}
+    %h3.list_name.handle{onclick: "list_name_edit.apply(this)",style:"height:17px"}= list.name
     %p.small
       %i.fa.fa-hand-o-up
       Drag cards between lists
