@@ -55,10 +55,10 @@ window.list_name_save = (e) ->
 
 
 window.card_new = (list_id)->
-  $("#card_form [name='card[list_id]']").val(list_id)
-  $("#card_form [name='card[name]']").val("")
-  $("#slot_form [name='card[card_type]']").val("")
-  $("#card_form").modal("show")
+  $("#new_card_form [name='card[list_id]']").val(list_id)
+  $("#new_card_form [name='card[name]']").val("")
+  #$("#slot_form [name='card[card_type]']").val("")
+  $("#new_card_form").modal("show")
 
 window.slot_new = (list_id)->
   $("#slot_form [name='slot[card_type]']").val("")
@@ -156,7 +156,8 @@ $ ->
           slot_id: $(this).parents(".slot").data('slot-id')
         dataType: 'script'
 
-  $(document).on 'click', '.card', ->
+  $(document).on 'click', 'div.card', (e)->
+    console.log("click card",e)
     card_id = $(this).data("card-id")
     $("#card_view_handle").html(($(".card_view[data-card-id=#{card_id}]")).html())
     $("#card_view_handle").modal("show")
