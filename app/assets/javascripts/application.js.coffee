@@ -120,20 +120,7 @@ window.slots_switch = (slot, slot_other) ->
       console.log(e)
       console.log('slots exchanged')
 
-window.lists_switch = (list_id, list_other) ->
-  $.ajax '/lists/switch',
-    method: 'post'
-    data:
-      list_id: list_id
-      list_other: list_other
-    dataType: 'script'
-    complete: (e)->
-      console.log(e)
-      console.log('lists exchanged')
-
-
-
-window.make_cards_draggable = ->
+window.apply_draggable = ->
   $(".card").draggable
     revert: "invalid"
     stack: ".card"
@@ -156,21 +143,24 @@ window.make_cards_draggable = ->
     accept: ".card"
     hoverClass: "card-hover"
 
-  $('.list').draggable
-    revert: "invalid"
-    cursor: "pointer"
-
-  $('.list').droppable
-    drop: (event,ui) ->
-      console.log(ui.draggable)
-      list_id = $(this).data("list-id")
-      list_other =  $(ui.draggable).data("list-id")
-      lists_switch(list_id, list_other)
-    accept: ".list"
-    hoverClass: "list-hover"
+  $("#sortable").sortable
+    update: (event,ui) ->
+      new_order = []
+      $("#sortable td div.list").each () ->
+        console.log this
+        new_order.push $(this).data("list-id")
+      console.log(new_order)
+      $.ajax '/lists/reorder',
+        method: 'post'
+        data:
+          new_order: new_order
+        dataType: 'script'
+        complete: (e)->
+          console.log(e)
+          console.log('lists reordered')
 
 $ ->
-  make_cards_draggable()
+  apply_draggable()
 
   $(document).on 'click', '.empty_slot_content', ->
     card_name = prompt('Card name')

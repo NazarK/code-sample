@@ -15,6 +15,12 @@ class ListsController < ApplicationController
     end
   end
 
+  def reorder
+    params[:new_order].each_with_index do |list_id,i|
+      List.find(list_id).update_attributes position: i
+    end
+  end
+
   def index
     @lists = List.all
     respond_with(@lists)

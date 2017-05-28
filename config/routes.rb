@@ -9,9 +9,12 @@ Rails.application.routes.draw do
   resources :slots do
     post :switch, on: :collection
   end
+
   resources :lists do
     post :switch, on: :collection
+    post :reorder, on: :collection
   end
+
   resources :cards
   resources :workflows do
     resources :milestones

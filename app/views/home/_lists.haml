@@ -1,8 +1,8 @@
 #lists_content{data:{timestamp: ApplicationHelper::last_update_timestamp}}
   %table.lists
-    %tr
+    %tr#sortable
       - List.order(:position).all.each do |list|
-        %td
+        %td{data: { list_id: list.id }}
           = render "home/list.haml", list: list
       %td
         = simple_form_for "list", url: lists_path, remote: true do |f|
