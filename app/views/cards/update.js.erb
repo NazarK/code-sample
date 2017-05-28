@@ -1,3 +1,4 @@
 <% if @card.errors.present? %>
   alert("<%= @card.errors.full_messages.join("\n").html_safe %>")
 <% end %>
+$("#lists_content").attr("data-timestamp", <%= ApplicationHelper::last_update_timestamp %>)
