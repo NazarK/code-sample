@@ -18,6 +18,32 @@
 #= require_tree .
 
 
+window.card_edit = (event) ->
+  event.stopPropagation()
+  (card_name_view = $(this).parents(".card").find(".card_name_view")).hide()
+  (card_name_input = $(this).parents(".card").find(".card_name_input")).show().val(card_name_view.html()).focus()
+  card_name_input[0].setSelectionRange(0, card_name_input.val().length)
+
+window.card_name_save = (event) ->
+  card = $(this).parents(".card")
+  input = card.find(".card_name_input")
+  if(!input.is(":visible"))
+    return;
+  console.log("SAVE")
+  input.hide()
+  (view = card.find(".card_name_view")).show().html(input.val())
+  console.log("SAVE DONE")
+  $.ajax '/cards/'+card.data("card-id"),
+    method: 'patch'
+    data: card:
+      name: input.val()
+    dataType: 'script'
+    #TODO: add error handler (with message no connection or something) with alert and probably reverting card name
+    complete: (e)->
+      console.log("card name patch ajax done")
+
+
+
 window.list_name_edit = () ->
   input_control = $(this).parents(".list").find(".list_name_edit")
   input_control.show().focus().val($(this).html())
@@ -175,5 +201,3 @@ $ ->
         console.log('checked for updates')
 
     ), 2000
-
-

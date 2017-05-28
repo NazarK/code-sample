@@ -37,6 +37,12 @@
     background: #fafafb;
     opacity: 0.9;
   }
+
+  .card_name:hover {
+    .edit-btn {
+      display: block!important;
+    }
+  }
 }
 
 .list {

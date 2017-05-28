@@ -14,10 +14,10 @@
       .pull-right
         %a{href: card_path(slot.card), data: { method: :delete, remote: true, confirm: "Delete card?"}}
           %i.fa.fa-close
-      - if slot.card&.card_type
-        %label.label.label-info.pull-right{style:"margin-right:5px"}
-          = slot.card&.card_type&.name
-      = slot.card.name
+      %div.card_name
+        %span.card_name_view= slot.card.name
+        %input.card_name_input{style:"display:none;margin:-2px;", onclick: "event.stopPropagation()", onkeydown: "if(event.keyCode==13) { card_name_save.apply(this,[event]) }", onblur: "card_name_save.apply(this,[event])"}
+        %i.fa.fa-pencil.pull-right.edit-btn{style:"margin:0;padding:6px;margin-right:2px;margin-top:-2px;background:#ddd;border-radius: 2px;display:none;", onClick: "card_edit.apply(this,[event])"}
       .agile-detail
         %i.fa.fa-clock-o
         = I18n.l slot.card.created_at, format: :long
